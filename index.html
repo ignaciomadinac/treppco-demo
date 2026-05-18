@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TREPPCO — Servicios Integrales de Mantenimiento Empresarial</title>
+  <meta name="description" content="Confía en TREPPCO para servicios integrales de mantenimiento que garantizan eficiencia y sostenibilidad en instalaciones industriales, logísticas y comerciales.">
+  <link rel="icon" type="image/png" href="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/fav.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── VARIABLES ─────────────────────────────────── */
+    :root {
+      --red:       #E72846;
+      --red-h:     #FC3151;
+      --red-bg:    #fff0f3;
+      --dark:      #1f2937;
+      --dark2:     #111827;
+      --body:      #4a4a4a;
+      --muted:     #969696;
+      --white:     #fff;
+      --bg:        #f8fafc;
+      --border:    #e2e8f0;
+      --shadow:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.14);
+      --r:         8px;
+      --r-lg:      14px;
+      --t:         .3s ease;
+    }
+
+    /* ── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Saira', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+    ::selection { background: var(--red); color: #fff; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── SCROLLBAR ─────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ── SCROLL PROGRESS BAR ───────────────────────── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--red); z-index: 9999;
+      transition: width .05s linear;
+      box-shadow: 0 0 8px rgba(231,40,70,.6);
+    }
+
+    /* ── TYPOGRAPHY ────────────────────────────────── */
+    h1,h2,h3,h4 { font-family: 'Saira', sans-serif; line-height: 1.15; color: var(--dark2); }
+    h1 { font-size: clamp(2.2rem,4.5vw,3.8rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; }
+    h3 { font-size: clamp(1.05rem,1.8vw,1.3rem); font-weight: 700; }
+
+    .kicker {
+      display: block; font-size: 12px; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 12px;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .section    { padding: 96px 0; }
+    .section-alt{ padding: 96px 0; background: var(--bg); }
+
+    /* ── DIAGONAL DIVIDERS ──────────────────────────── */
+    .diag-b {
+      position: relative;
+    }
+    .diag-b::after {
+      content: '';
+      position: absolute; bottom: -40px; left: 0; right: 0; height: 80px;
+      background: inherit; z-index: 1;
+      clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+    }
+    .diag-t {
+      position: relative;
+    }
+    .diag-t::before {
+      content: '';
+      position: absolute; top: -40px; left: 0; right: 0; height: 80px;
+      background: inherit; z-index: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+    }
+
+    /* ── BUTTONS ────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; font-family: 'Saira', sans-serif;
+      font-size: 15px; font-weight: 600; border-radius: var(--r);
+      transition: var(--t); cursor: pointer; white-space: nowrap;
+    }
+    .btn-red  { background: var(--red);  color: #fff; box-shadow: 0 4px 14px rgba(231,40,70,.28); }
+    .btn-red:hover  { background: var(--red-h); transform: translateY(-2px); box-shadow: 0 7px 22px rgba(231,40,70,.38); }
+    /* hero CTA — magnetic shimmer button */
+    .btn-hero {
+      position: relative; overflow: hidden;
+      background: var(--red); color: #fff;
+      box-shadow: 0 4px 20px rgba(231,40,70,.35);
+      padding: 15px 32px; font-size: 15.5px; font-weight: 700;
+      letter-spacing: .02em; border-radius: var(--r);
+    }
+    .btn-hero::before {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: skewX(-20deg);
+      transition: none;
+      animation: shimmer 3.2s 1.5s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%,100%{left:-100%} 45%,55%{left:150%} }
+    .btn-hero:hover {
+      background: var(--red-h);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(231,40,70,.45);
+    }
+    .btn-hero svg { transition: transform .25s cubic-bezier(.4,0,.2,1); }
+    .btn-hero:hover svg { transform: translateX(5px); }
+    .btn-ghost-r { background: transparent; color: var(--red); border: 2px solid var(--red); }
+    .btn-ghost-r:hover { background: var(--red); color: #fff; transform: translateY(-2px); }
+    .btn svg { transition: transform .2s; flex-shrink: 0; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* ── REVEAL ANIMATIONS ──────────────────────────── */
+    .rev   { opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+    .rev-l { opacity:0; transform:translateX(-36px); transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .75s cubic-bezier(.4,0,.2,1); }
+    .rev-r { opacity:0; transform:translateX(36px);  transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .75s cubic-bezier(.4,0,.2,1); }
+    .rev-s { opacity:0; transform:scale(.94); transition:opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1); }
+    .rev.in, .rev-l.in, .rev-r.in, .rev-s.in { opacity:1; transform:none; }
+    .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s}
+    .d4{transition-delay:.28s} .d5{transition-delay:.35s} .d6{transition-delay:.42s}
+    .d7{transition-delay:.49s} .d8{transition-delay:.56s} .d9{transition-delay:.63s}
+    .d10{transition-delay:.70s} .d11{transition-delay:.77s} .d12{transition-delay:.84s}
+
+    /* ══════════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════════ */
+    .navbar {
+      position: fixed; top:0; left:0; right:0; z-index:1000;
+      background: var(--white);
+      box-shadow: 0 1px 0 var(--border);
+      transition: box-shadow .3s, background .3s;
+    }
+    .navbar.up { box-shadow: 0 4px 24px rgba(0,0,0,.10); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; height:80px; }
+    .nav-logo img { height:36px; width:auto; }
+
+    .nav-links { display:flex; align-items:center; gap:4px; list-style:none; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a {
+      font-size:14px; font-weight:500; color:var(--dark);
+      padding: 8px 12px; border-radius:6px;
+      display:flex; align-items:center; gap:4px;
+      position:relative; transition:color .2s, background .2s;
+    }
+    .nav-links > li > a:hover { color:var(--red); background:var(--red-bg); }
+    .nav-links > li > a .chev {
+      width:14px; height:14px; transition:transform .28s; flex-shrink:0;
+    }
+    .nav-links > li:hover > a .chev { transform:rotate(180deg); }
+
+    /* Dropdown panel */
+    .nav-drop {
+      position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(6px);
+      background:var(--white); border:1.5px solid var(--border);
+      border-radius:12px; box-shadow:0 16px 48px rgba(0,0,0,.13);
+      padding:8px; min-width:220px;
+      opacity:0; pointer-events:none;
+      /* delay only on hide so it doesn't vanish instantly */
+      transition:opacity .15s cubic-bezier(.4,0,.2,1), transform .15s cubic-bezier(.4,0,.2,1);
+      z-index:200;
+    }
+    /* transparent bridge fills the gap between link and panel */
+    .nav-drop::before {
+      content:''; position:absolute; bottom:100%; left:0; right:0; height:14px;
+    }
+    .nav-drop.wide { min-width:460px; display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+    /* show instantly when hovering, hide instantly too so items don't overlap */
+    .nav-links > li:hover .nav-drop {
+      opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0);
+      transition:opacity .18s cubic-bezier(.4,0,.2,1), transform .18s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-drop a {
+      display:flex; align-items:center; gap:8px;
+      padding:9px 13px; border-radius:7px;
+      font-size:13.5px; font-weight:500; color:var(--dark);
+      transition:background .18s, color .18s;
+    }
+    .nav-drop a::before {
+      content:''; width:5px; height:5px; border-radius:50%;
+      background:var(--red); opacity:0; flex-shrink:0;
+      transition:opacity .18s;
+    }
+    .nav-drop a:hover { background:var(--red-bg); color:var(--red); }
+    .nav-drop a:hover::before { opacity:1; }
+
+    .nav-right { display:flex; align-items:center; gap:12px; }
+
+    /* ── Country switcher ───────────────────────── */
+    .country-sw {
+      position:relative;
+    }
+    .csw-trigger {
+      display:flex; align-items:center; gap:6px;
+      padding:8px 12px; border-radius:var(--r);
+      background:var(--bg); border:1.5px solid var(--border);
+      cursor:pointer; font-family:'Saira',sans-serif;
+      font-size:13px; font-weight:600; color:var(--dark);
+      transition:border-color .2s, background .2s;
+      white-space:nowrap; width:88px; justify-content:center;
+    }
+    .csw-trigger:hover { border-color:var(--red); background:var(--red-bg); }
+    .csw-trigger .flag { font-size:17px; line-height:1; }
+    .csw-trigger .csw-chev {
+      width:13px; height:13px; color:var(--muted);
+      transition:transform .25s;
+    }
+    .country-sw.open .csw-trigger { border-color:var(--red); background:var(--red-bg); }
+    .country-sw.open .csw-chev { transform:rotate(180deg); }
+
+    .csw-drop {
+      position:absolute; top:calc(100% + 8px); right:0;
+      background:var(--white); border:1.5px solid var(--border);
+      border-radius:10px; box-shadow:0 12px 36px rgba(0,0,0,.12);
+      padding:6px; min-width:150px;
+      opacity:0; pointer-events:none; transform:translateY(6px);
+      transition:opacity .18s ease, transform .18s ease;
+      z-index:300;
+    }
+    .country-sw.open .csw-drop { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .csw-opt {
+      display:flex; align-items:center; gap:9px;
+      padding:9px 12px; border-radius:7px; cursor:pointer;
+      font-size:13.5px; font-weight:600; color:var(--dark);
+      transition:background .15s, color .15s;
+      border:none; background:transparent; font-family:'Saira',sans-serif;
+      width:100%;
+    }
+    .csw-opt .flag { font-size:18px; line-height:1; }
+    .csw-opt:hover { background:var(--bg); }
+    .csw-opt.active { background:var(--red-bg); color:var(--red); }
+    .csw-opt.active::after {
+      content:'✓'; margin-left:auto; font-size:11px;
+    }
+    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+    .nav-burger span { width:24px; height:2px; background:var(--dark); border-radius:2px; transition:var(--t); }
+
+    /* Mobile menu */
+    .mob-menu {
+      position:fixed; top:80px; left:0; right:0; bottom:0; z-index:999;
+      background:var(--white); border-top:2px solid var(--red);
+      opacity:0; pointer-events:none; transform:translateY(-10px);
+      transition:opacity .28s, transform .28s; overflow-y:auto;
+    }
+    .mob-menu.on { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .mob-links { padding:12px 0; }
+    .mob-item { border-bottom:1px solid var(--border); }
+    .mob-item:last-child { border-bottom:none; }
+    .mob-top {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 28px; font-size:18px; font-weight:700; color:var(--dark);
+      cursor:pointer; transition:color .2s;
+    }
+    .mob-top:hover { color:var(--red); }
+    .mob-top-ico {
+      width:26px; height:26px; border-radius:50%; border:1.5px solid var(--border);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      transition:background .2s, border-color .2s, transform .3s;
+    }
+    .mob-item.open .mob-top-ico { background:var(--red); border-color:var(--red); transform:rotate(180deg); }
+    .mob-item.open .mob-top-ico svg { color:#fff; }
+    .mob-sub {
+      max-height:0; overflow:hidden;
+      transition:max-height .36s cubic-bezier(.4,0,.2,1);
+    }
+    .mob-item.open .mob-sub { max-height:600px; }
+    .mob-sub a {
+      display:flex; align-items:center; gap:8px;
+      padding:10px 28px 10px 44px;
+      font-size:14px; font-weight:500; color:var(--body);
+      transition:color .18s, padding-left .18s;
+      border-top:1px solid var(--border);
+    }
+    .mob-sub a::before {
+      content:''; width:4px; height:4px; border-radius:50%; background:var(--red); flex-shrink:0;
+    }
+    .mob-sub a:hover { color:var(--red); padding-left:52px; }
+    .mob-link-plain {
+      display:block; padding:14px 28px;
+      font-size:18px; font-weight:700; color:var(--dark);
+      transition:color .2s;
+    }
+    .mob-link-plain:hover { color:var(--red); }
+    .mob-cta { padding:20px 28px; }
+
+    /* ══════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════ */
+    .hero {
+      position:relative; min-height:100vh;
+      display:flex; align-items:center;
+      background:#05080e; overflow:hidden;
+      padding-top:80px;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background-image: url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/fondo.webp');
+      background-size:cover; background-position:center;
+      opacity:.26;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(105deg, rgba(5,8,14,.96) 0%, rgba(5,8,14,.78) 52%, rgba(231,40,70,.07) 100%);
+    }
+    /* animated geometry */
+    .hero-geo {
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    }
+    .hero-geo span {
+      position:absolute; border:1px solid rgba(231,40,70,.18); border-radius:50%;
+      animation: geopulse 8s ease-in-out infinite;
+    }
+    .hero-geo span:nth-child(1){width:340px;height:340px;right:-60px;top:10%;animation-delay:0s;}
+    .hero-geo span:nth-child(2){width:540px;height:540px;right:-140px;top:-8%;animation-delay:1.4s;border-color:rgba(231,40,70,.09);}
+    .hero-geo span:nth-child(3){width:160px;height:160px;right:18%;bottom:22%;animation-delay:.7s;border-color:rgba(231,40,70,.22);}
+    .hero-geo span:nth-child(4){width:60px;height:60px;left:8%;bottom:30%;border-color:rgba(255,255,255,.06);animation-delay:2s;}
+    @keyframes geopulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.06);opacity:.7} }
+
+    /* floating dots */
+    .hero-dots {
+      position:absolute; inset:0; pointer-events:none;
+    }
+    .hero-dots span {
+      position:absolute; width:3px; height:3px; border-radius:50%;
+      background:rgba(255,255,255,.18); animation:floatdot linear infinite;
+    }
+    @keyframes floatdot { 0%{transform:translateY(0);opacity:0} 15%{opacity:1} 85%{opacity:1} 100%{transform:translateY(-60px);opacity:0} }
+
+    .hero-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red); }
+    /* red line animation */
+    .hero-bar::after {
+      content:''; position:absolute; left:0; top:0; width:100%;
+      background:rgba(255,255,255,.5); height:30%;
+      animation:barglide 3s ease-in-out infinite;
+    }
+    @keyframes barglide { 0%{top:-30%;opacity:0} 30%{opacity:1} 70%{opacity:1} 100%{top:100%;opacity:0} }
+
+    .hero-body { position:relative; z-index:2; padding-bottom:130px; margin-left:0; margin-right:0; max-width:none; }
+    .hero-content { max-width:580px; padding-left: clamp(48px, 8vw, 140px); }
+    .hero-body h1 { color:#fff; margin-bottom:22px; }
+    .hero-body h1 .r { color:var(--red); position:relative; display:inline-block; }
+    .hero-body h1 .r::after {
+      content:''; position:absolute; left:0; bottom:-4px; width:100%; height:3px;
+      background:var(--red); border-radius:2px;
+      animation:underscale .9s .8s cubic-bezier(.4,0,.2,1) both;
+      transform-origin:left;
+    }
+    @keyframes underscale { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+
+    .hero-sub {
+      font-size:clamp(1rem,1.4vw,1.1rem); color:rgba(255,255,255,.62);
+      line-height:1.82; max-width:540px; margin-bottom:38px;
+      opacity:0; animation:fup .8s .5s forwards;
+    }
+    .hero-actions { opacity:0; animation:fup .8s .7s forwards; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .hero-h1-anim { opacity:0; animation:fup .8s .3s forwards; }
+    @keyframes fup { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+
+    /* Stats strip */
+    .hstats {
+      position:absolute; bottom:0; left:0; right:0;
+      background:rgba(5,8,14,.88); backdrop-filter:blur(14px);
+      border-top:1px solid rgba(255,255,255,.07);
+      opacity:0; animation:fup .8s .9s forwards;
+    }
+    .hstats-inner { display:grid; grid-template-columns:repeat(4,1fr); }
+    .hstat {
+      padding:22px 24px; text-align:center;
+      border-right:1px solid rgba(255,255,255,.07);
+      position:relative; overflow:hidden;
+    }
+    .hstat::before {
+      content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+      width:0; height:2px; background:var(--red);
+      transition:width .4s; border-radius:2px;
+    }
+    .hstat:hover::before { width:60%; }
+    .hstat:last-child { border-right:none; }
+    .hstat-n {
+      font-size:clamp(1.6rem,2.4vw,2.1rem); font-weight:800; color:#fff;
+      line-height:1; margin-bottom:5px;
+    }
+    .hstat-n em { font-style:normal; color:var(--red); }
+    .hstat-l { font-size:11px; color:rgba(255,255,255,.42); text-transform:uppercase; letter-spacing:.1em; font-weight:500; }
+
+    /* ══════════════════════════════════════════════════
+       CLIENTS STRIP
+    ══════════════════════════════════════════════════ */
+    .clients { padding:72px 0; border-bottom:1px solid var(--border); overflow:hidden; }
+    .clients-title { text-align:center; margin-bottom:40px; }
+    .clients-title p { font-size:clamp(.95rem,1.4vw,1.1rem); color:var(--muted); font-weight:500; }
+    .track-wrap { position:relative; overflow:hidden; }
+    .track-wrap::before,
+    .track-wrap::after {
+      content:''; position:absolute; top:0; bottom:0; width:100px; z-index:2; pointer-events:none;
+    }
+    .track-wrap::before { left:0;  background:linear-gradient(to right, #fff 0%, transparent 100%); }
+    .track-wrap::after  { right:0; background:linear-gradient(to left,  #fff 0%, transparent 100%); }
+    .track { display:flex; gap:32px; width:max-content; align-items:center; animation:scroll 30s linear infinite; }
+    .track:hover { animation-play-state:paused; }
+    @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .track { display:flex; gap:40px; width:max-content; align-items:center; animation:scroll 30s linear infinite; }
+    .clogo {
+      display:flex; align-items:center; justify-content:center;
+      height:68px; padding:0 28px; min-width:130px;
+      border:1.5px solid var(--border); border-radius:var(--r);
+      transition:var(--t);
+    }
+    .clogo img { height:40px; width:auto; object-fit:contain; filter:grayscale(1) opacity(.45); transition:filter .3s; }
+    .clogo:hover { border-color:var(--red); background:var(--red-bg); }
+    .clogo:hover img { filter:grayscale(0) opacity(1); }
+
+    /* ══════════════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════════════ */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .about-img-wrap {
+      border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-lg);
+      position:relative;
+    }
+    .about-img-wrap::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(231,40,70,.12) 0%, transparent 50%);
+      pointer-events:none;
+    }
+    .about-img-wrap img { width:100%; height:500px; object-fit:cover; transition:transform .7s cubic-bezier(.4,0,.2,1); }
+    .about-img-wrap:hover img { transform:scale(1.03); }
+    .about-text { display:flex; flex-direction:column; gap:22px; }
+    .about-text h2 { margin-bottom:4px; }
+    .about-text p  { font-size:16px; color:var(--body); line-height:1.82; }
+    .badges { display:flex; gap:8px; flex-wrap:wrap; }
+    .badge {
+      padding:5px 13px; border-radius:50px;
+      border:1.5px solid var(--border); background:var(--bg);
+      font-size:12px; font-weight:600; color:var(--body);
+      transition:var(--t);
+    }
+    .badge:hover { border-color:var(--border); transform:translateY(-2px); box-shadow:var(--shadow); }
+    .badge.r { border-color:rgba(231,40,70,.25); background:var(--red-bg); color:var(--red); }
+    .badge.r:hover { background:var(--red); color:#fff; border-color:var(--red); }
+    .ab-actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+    /* ══════════════════════════════════════════════════
+       STATS BAR
+    ══════════════════════════════════════════════════ */
+    .stats-bar { background:var(--dark2); padding:60px 0; position:relative; overflow:hidden; }
+    .stats-bar::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 60% 50%, rgba(231,40,70,.07) 0%, transparent 70%);
+    }
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); position:relative; z-index:1; }
+    .sblock {
+      padding:0 36px; text-align:center;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .sblock:last-child { border-right:none; }
+    .sblock-n { font-size:clamp(1.9rem,3.2vw,2.8rem); font-weight:800; color:#fff; line-height:1; margin-bottom:9px; }
+    .sblock-n em { font-style:normal; color:var(--red); }
+    .sblock-l { font-size:12px; color:rgba(255,255,255,.38); text-transform:uppercase; letter-spacing:.1em; font-weight:500; }
+
+    /* ══════════════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════════════ */
+    .sec-head { text-align:center; max-width:600px; margin:0 auto 56px; }
+    .sec-head h2 { margin-bottom:12px; }
+    .sec-head p  { color:var(--body); font-size:15px; line-height:1.7; }
+    .srv-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .srv-card {
+      position:relative; aspect-ratio:1; border-radius:var(--r-lg);
+      overflow:hidden; cursor:pointer; box-shadow:var(--shadow);
+      transition:transform .45s cubic-bezier(.4,0,.2,1), box-shadow .45s;
+    }
+    .srv-card:hover {
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 24px 56px rgba(231,40,70,.22), 0 8px 20px rgba(0,0,0,.18);
+    }
+    .srv-img { position:absolute; inset:0; background-size:cover; background-position:center; transition:transform .7s cubic-bezier(.4,0,.2,1); }
+    .srv-card:hover .srv-img { transform:scale(1.1); }
+    .srv-ov  {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(5,8,14,.94) 0%, rgba(5,8,14,.42) 55%, rgba(5,8,14,.04) 100%);
+      transition:background .4s;
+    }
+    .srv-card:hover .srv-ov {
+      background:linear-gradient(to top, rgba(5,8,14,.97) 0%, rgba(5,8,14,.68) 55%, rgba(5,8,14,.12) 100%);
+    }
+    .srv-top {
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--red); transform:scaleX(0); transform-origin:left;
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .srv-card:hover .srv-top { transform:scaleX(1); }
+    .srv-body { position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; justify-content:flex-end; }
+    .srv-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:7px; text-shadow:0 1px 8px rgba(0,0,0,.8); }
+    .srv-desc {
+      font-size:12.5px; color:#e2e8f0; line-height:1.6;
+      max-height:0; overflow:hidden; opacity:0;
+      transition:max-height .42s cubic-bezier(.4,0,.2,1), opacity .32s;
+    }
+    .srv-card:hover .srv-desc { max-height:90px; opacity:1; }
+    .srv-more {
+      display:inline-flex; align-items:center; gap:4px;
+      font-size:12px; font-weight:600; color:var(--red);
+      margin-top:9px; opacity:0; transform:translateX(-6px);
+      transition:opacity .3s .1s, transform .3s .1s;
+    }
+    .srv-card:hover .srv-more { opacity:1; transform:translateX(0); }
+
+    /* ══════════════════════════════════════════════════
+       CTA BAND
+    ══════════════════════════════════════════════════ */
+    .cta-band { background:var(--dark2); padding:80px 0; position:relative; overflow:hidden; }
+    .cta-band::before {
+      content:''; position:absolute; top:0; right:0; bottom:0; width:40%;
+      background:linear-gradient(to left, rgba(231,40,70,.10), transparent);
+    }
+    .cta-band::after {
+      content:''; position:absolute; left:0; top:15%; bottom:15%;
+      width:4px; background:var(--red); border-radius:2px;
+    }
+    /* animated radial glow */
+    .cta-glow {
+      position:absolute; right:10%; top:50%; transform:translateY(-50%);
+      width:300px; height:300px; border-radius:50%;
+      background:radial-gradient(circle, rgba(231,40,70,.12) 0%, transparent 70%);
+      animation:glowpulse 4s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes glowpulse { 0%,100%{transform:translateY(-50%) scale(1);opacity:1} 50%{transform:translateY(-50%) scale(1.2);opacity:.6} }
+    .cta-inner { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:36px; }
+    .cta-text h2 { color:#fff; margin-bottom:10px; }
+    .cta-text p  { color:rgba(255,255,255,.58); font-size:16px; }
+
+    /* ══════════════════════════════════════════════════
+       WHY TREPPCO
+    ══════════════════════════════════════════════════ */
+    .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .acc { display:flex; flex-direction:column; gap:4px; }
+    .ai  { border:1.5px solid var(--border); border-radius:var(--r); overflow:hidden; transition:border-color .25s, box-shadow .25s; }
+    .ai.open { border-color:var(--red); box-shadow:0 4px 16px rgba(231,40,70,.1); }
+    .ai-head {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 20px; cursor:pointer; background:var(--white); transition:background .25s;
+      gap:12px;
+    }
+    .ai.open .ai-head { background:var(--red-bg); }
+    .ai-head:hover { background:var(--bg); }
+    .ai.open .ai-head:hover { background:var(--red-bg); }
+    .ai-title { display:flex; align-items:center; gap:12px; font-size:15px; font-weight:700; color:var(--dark2); }
+    .ai-n {
+      width:27px; height:27px; flex-shrink:0; border-radius:6px;
+      background:var(--bg); display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:700; color:var(--muted); transition:background .25s, color .25s;
+    }
+    .ai.open .ai-n { background:var(--red); color:#fff; }
+    .ai-chev { color:var(--muted); transition:transform .3s, color .3s; flex-shrink:0; }
+    .ai.open .ai-chev { transform:rotate(180deg); color:var(--red); }
+    .ai-body { max-height:0; overflow:hidden; transition:max-height .3s ease; }
+    .ai.open .ai-body { max-height:200px; }
+    .ai-content { padding:0 20px 16px; font-size:14px; color:var(--body); line-height:1.75; }
+    .why-img-wrap {
+      position: sticky; top: 100px;
+      border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-lg);
+      position:relative;
+    }
+    .why-img-wrap::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(231,40,70,.08) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .why-img-wrap img { width:100%; height:520px; object-fit:cover; transition:transform .7s; }
+    .why-img-wrap:hover img { transform:scale(1.03); }
+
+    /* ══════════════════════════════════════════════════
+       SECTORS
+    ══════════════════════════════════════════════════ */
+    .sectors-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:stretch; }
+    .sec-industries { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .sind {
+      padding:12px 16px; background:var(--white); border:1.5px solid var(--border);
+      border-radius:var(--r); font-size:13.5px; font-weight:600; color:var(--dark);
+      display:flex; align-items:center; gap:8px; transition:var(--t);
+    }
+    .sind:hover { border-color:var(--red); background:var(--red-bg); color:var(--red); transform:translateX(5px); }
+    .sind svg { flex-shrink:0; color:var(--red); opacity:.6; transition:opacity .2s; }
+    .sind:hover svg { opacity:1; }
+    .sec-feat { display:flex; flex-direction:column; gap:14px; height:100%; justify-content:space-between; }
+    .sfeat { flex:1; }
+    .sfeat {
+      padding:22px; background:var(--white); border-radius:var(--r-lg);
+      border:1.5px solid var(--border); box-shadow:var(--shadow); transition:var(--t);
+    }
+    .sfeat:hover { border-color:var(--red); transform:translateY(-3px); box-shadow:0 8px 28px rgba(231,40,70,.1); }
+    .sfeat h4 { font-size:15px; margin-bottom:7px; color:var(--dark2); }
+    .sfeat p  { font-size:14px; color:var(--body); line-height:1.65; }
+
+    /* ══════════════════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════════════════ */
+    .contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:stretch; }
+    .cf, .ci { display:flex; flex-direction:column; }
+    .cf form { flex:1; display:flex; flex-direction:column; }
+    .cf form .fg:last-of-type { flex:1; }
+    .cf form .fg:last-of-type textarea { flex:1; min-height:108px; }
+    .cf h2 { margin-bottom:8px; }
+    .cf > p { color:var(--body); font-size:15px; margin-bottom:30px; }
+    .frow { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .fg  { display:flex; flex-direction:column; gap:7px; margin-bottom:14px; }
+    .fg label { font-size:13px; font-weight:600; color:var(--dark2); }
+    .fg input, .fg select, .fg textarea {
+      padding:12px 16px; background:var(--white); border:1.5px solid var(--border);
+      border-radius:var(--r); font-family:'Saira',sans-serif; font-size:15px; color:var(--dark);
+      transition:border-color .25s, box-shadow .25s; outline:none;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color:var(--red); box-shadow:0 0 0 3px rgba(231,40,70,.08);
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color:#ccc; }
+    .fg select option { background:#fff; }
+    .fg textarea { min-height:108px; resize:vertical; }
+    .form-ok {
+      display:none; margin-top:14px; padding:13px 18px;
+      background:#ecfdf5; border:1.5px solid #6ee7b7;
+      border-radius:var(--r); font-size:14px; color:#065f46;
+    }
+    .ci h3 { margin-bottom:8px; }
+    .ci > p { color:var(--body); font-size:15px; margin-bottom:28px; line-height:1.78; }
+    .ci-items { display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+    .ci-item { display:flex; align-items:flex-start; gap:13px; }
+    .ci-ico {
+      width:40px; height:40px; flex-shrink:0; background:var(--red-bg);
+      border:1.5px solid rgba(231,40,70,.2); border-radius:var(--r);
+      display:flex; align-items:center; justify-content:center; color:var(--red);
+      transition:var(--t);
+    }
+    .ci-item:hover .ci-ico { background:var(--red); color:#fff; }
+    .ci-text label { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:600; margin-bottom:2px; }
+    .ci-text a, .ci-text span { font-size:14.5px; font-weight:500; color:var(--dark); }
+    .ci-text a:hover { color:var(--red); }
+    .pres { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    .ptag { display:flex; align-items:center; gap:8px; padding:7px 13px; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); font-size:13px; font-weight:600; }
+    .cert-imgs { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    .cert-imgs img { height:70px; width:auto; }
+
+    /* ══════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════ */
+    .footer { background:var(--dark2); padding:68px 0 0; position:relative; overflow:hidden; }
+    .footer::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(to right, var(--red) 0%, transparent 100%);
+    }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.4fr; gap:52px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,.07); }
+    .fb-logo img { height:36px; width:auto; margin-bottom:14px; filter:brightness(0) invert(1); }
+    .fb p   { font-size:14px; color:rgba(255,255,255,.42); line-height:1.75; max-width:260px; margin-bottom:18px; }
+    .f-soc  { display:flex; gap:8px; }
+    .fsoc-a {
+      width:34px; height:34px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--r); display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.42); transition:var(--t);
+    }
+    .fsoc-a:hover { background:var(--red); border-color:var(--red); color:#fff; transform:translateY(-2px); }
+    .fcol h4 { font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:14px; }
+    .flinks { display:flex; flex-direction:column; gap:9px; }
+    .flinks a { font-size:13.5px; color:rgba(255,255,255,.52); transition:color .2s, padding-left .2s; }
+    .flinks a:hover { color:#fff; padding-left:4px; }
+    .fbot { padding:16px 0; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .fbot p { font-size:13px; color:rgba(255,255,255,.2); }
+    .fbot a { color:var(--red); }
+    .fbot a:hover { text-decoration:underline; }
+
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════ */
+    @media (max-width:1080px) {
+      .srv-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-grid { grid-template-columns:1fr 1fr; gap:36px; }
+    }
+    /* ── Tablet ───────────────────────────────── */
+    @media (max-width:900px) {
+      .about-grid,.why-grid,.contact-layout,.sectors-layout { grid-template-columns:1fr; gap:44px; }
+      .hstats-inner { grid-template-columns:repeat(2,1fr); }
+      .hstat:nth-child(2) { border-right:none; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .sblock:nth-child(2) { border-right:none; }
+      .cta-inner { flex-direction:column; text-align:center; }
+      .nav-links, .nav-right .btn { display:none; }
+      .nav-burger { display:flex; }
+      /* hero: tablet — expand a bit but keep left */
+      .hero-content { max-width:100%; width:60%; }
+    }
+
+    /* ── Mobile ───────────────────────────────── */
+    @media (max-width:640px) {
+      .section,.section-alt { padding:72px 0; }
+      .srv-grid { grid-template-columns:1fr 1fr; }
+      .footer-grid { grid-template-columns:1fr; gap:28px; }
+      .sec-industries { grid-template-columns:1fr; }
+      .frow { grid-template-columns:1fr; }
+      .hstats-inner { grid-template-columns:1fr 1fr; }
+
+      /* hero: center everything on mobile */
+      .hero-content {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-sub { max-width: 100%; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hstats-inner { grid-template-columns: 1fr 1fr; }
+      .hstat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.07); }
+      .hstat:nth-child(2) { border-right: none; }
+
+      /* center section heads */
+      .about-text, .cf, .ci { text-align: center; }
+      .ab-actions, .badges { justify-content: center; }
+      .ci-item { flex-direction: column; align-items: center; text-align: center; }
+      .ci-text label { text-align: center; }
+      .pres, .cert-imgs { justify-content: center; }
+      .f-soc { justify-content: flex-start; }
+    }
+
+    @media (max-width:400px) {
+      .srv-grid { grid-template-columns:1fr; }
+      .hstats-inner { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  NAVBAR                              ║
+     ╚══════════════════════════════════════╝ -->
+<nav class="navbar" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo.png" alt="TREPPCO">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Empresa</a></li>
+
+        <!-- Servicios dropdown -->
+        <li>
+          <a href="#servicios">
+            Servicios
+            <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="nav-drop wide">
+            <a href="#servicios">Mantenimiento Integral</a>
+            <a href="#servicios">Servicios Industriales</a>
+            <a href="#servicios">Climatización</a>
+            <a href="#servicios">Facility Management</a>
+            <a href="#servicios">Espacios Verdes</a>
+            <a href="#servicios">Conserjería</a>
+            <a href="#servicios">Ingeniería</a>
+            <a href="#servicios">Obras</a>
+          </div>
+        </li>
+
+        <!-- Sectores dropdown -->
+        <li>
+          <a href="#sectores">
+            Sectores
+            <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="nav-drop wide">
+            <a href="#sectores">Data Centers</a>
+            <a href="#sectores">Polos Logísticos</a>
+            <a href="#sectores">Centros Educativos</a>
+            <a href="#sectores">Centros Comerciales</a>
+            <a href="#sectores">Instituciones Financieras</a>
+            <a href="#sectores">Call Centers</a>
+            <a href="#sectores">Oficinas Corporativas</a>
+            <a href="#sectores">Edificios de Viviendas</a>
+            <a href="#sectores">Retailers</a>
+            <a href="#sectores">Plantas Industriales</a>
+            <a href="#sectores">Servicios Portuarios</a>
+            <a href="#sectores">Centros de Salud</a>
+          </div>
+        </li>
+
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="#contacto" class="btn btn-red" style="padding:10px 20px;font-size:13.5px;">
+          Solicitar presupuesto
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="country-sw" id="countrySw">
+          <button class="csw-trigger" onclick="toggleCSW()">
+            <span class="flag" id="cswFlag">🇺🇾</span>
+            <span id="cswLabel">UY</span>
+            <svg class="csw-chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="csw-drop">
+            <button class="csw-opt active" id="optUY" onclick="switchCountry('uy')">
+              <span class="flag">🇺🇾</span> Uruguay
+            </button>
+            <button class="csw-opt" id="optCL" onclick="switchCountry('cl')">
+              <span class="flag">🇨🇱</span> Chile
+            </button>
+          </div>
+        </div>
+
+        <div class="nav-burger" id="burger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-links">
+    <div class="mob-item">
+      <a class="mob-link-plain" href="#inicio" onclick="cm()">Inicio</a>
+    </div>
+    <div class="mob-item">
+      <a class="mob-link-plain" href="#nosotros" onclick="cm()">Empresa</a>
+    </div>
+    <div class="mob-item" id="mobServ">
+      <div class="mob-top" onclick="mt('mobServ')">
+        Servicios
+        <span class="mob-top-ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+      </div>
+      <div class="mob-sub">
+        <a href="#servicios" onclick="cm()">Mantenimiento Integral</a>
+        <a href="#servicios" onclick="cm()">Servicios Industriales</a>
+        <a href="#servicios" onclick="cm()">Climatización</a>
+        <a href="#servicios" onclick="cm()">Facility Management</a>
+        <a href="#servicios" onclick="cm()">Espacios Verdes</a>
+        <a href="#servicios" onclick="cm()">Conserjería</a>
+        <a href="#servicios" onclick="cm()">Ingeniería</a>
+        <a href="#servicios" onclick="cm()">Obras</a>
+      </div>
+    </div>
+    <div class="mob-item" id="mobSect">
+      <div class="mob-top" onclick="mt('mobSect')">
+        Sectores
+        <span class="mob-top-ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+      </div>
+      <div class="mob-sub">
+        <a href="#sectores" onclick="cm()">Data Centers</a>
+        <a href="#sectores" onclick="cm()">Polos Logísticos</a>
+        <a href="#sectores" onclick="cm()">Centros Educativos</a>
+        <a href="#sectores" onclick="cm()">Centros Comerciales</a>
+        <a href="#sectores" onclick="cm()">Instituciones Financieras</a>
+        <a href="#sectores" onclick="cm()">Call Centers</a>
+        <a href="#sectores" onclick="cm()">Oficinas Corporativas</a>
+        <a href="#sectores" onclick="cm()">Edificios de Viviendas</a>
+        <a href="#sectores" onclick="cm()">Retailers</a>
+        <a href="#sectores" onclick="cm()">Plantas Industriales</a>
+        <a href="#sectores" onclick="cm()">Servicios Portuarios</a>
+        <a href="#sectores" onclick="cm()">Centros de Salud</a>
+      </div>
+    </div>
+    <div class="mob-item">
+      <a class="mob-link-plain" href="#contacto" onclick="cm()">Contacto</a>
+    </div>
+  </div>
+  <div class="mob-cta">
+    <a href="#contacto" class="btn btn-red" style="width:100%;justify-content:center;" onclick="cm()">Solicitar presupuesto</a>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  HERO                                ║
+     ╚══════════════════════════════════════╝ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-geo">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-bar"></div>
+
+  <div class="container hero-body">
+    <div class="hero-content">
+      <h1 class="hero-h1-anim" style="line-height:1.05;">
+        <span style="display:block; white-space:nowrap">Servicios integrales</span>
+        <span style="display:block; white-space:nowrap">de <span class="r">mantenimiento</span></span>
+        <span style="display:block">para empresas</span>
+      </h1>
+      <p class="hero-sub">
+        Con un enfoque innovador y personalizado, garantizamos el cuidado y mantenimiento de tus espacios empresariales, asegurando eficiencia operativa y sostenibilidad.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-hero">
+          Contacte con nuestro equipo
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hstats">
+    <div class="container">
+      <div class="hstats-inner">
+        <div class="hstat">
+          <div class="hstat-n"><em>+</em><span class="c" data-n="350">0</span></div>
+          <div class="hstat-l">Proyectos ejecutados</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n"><em>+</em><span class="c" data-n="40000" data-s=".">0</span></div>
+          <div class="hstat-l">Trabajos anuales</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n"><em>+</em><span class="c" data-n="14">0</span></div>
+          <div class="hstat-l">Años de experiencia</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n"><em>+</em><span class="c" data-n="53">0</span></div>
+          <div class="hstat-l">Clientes internacionales</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  CLIENTES                            ║
+     ╚══════════════════════════════════════╝ -->
+<section class="clients" id="clientes">
+  <div class="container">
+    <div class="clients-title rev">
+      <p>Aliados estratégicos que optaron por nuestros servicios integrales de mantenimiento</p>
+    </div>
+  </div>
+  <div class="track-wrap">
+    <div class="track">
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo-universidad-uruguay.png" alt="Universidad del Uruguay"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo-hym.png" alt="H&M"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/ministerio-trasporte-logo.gif" alt="Ministerio de Transporte"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/abb-logo.gif" alt="ABB"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/ute-logo.gif" alt="UTE"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/decathlon-logo.gif" alt="Decathlon"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/disa-logo.gif" alt="DISA"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/starbucks.gif" alt="Starbucks"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/metlife-logo.gif" alt="MetLife"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/rootstrap.gif" alt="Rootstrap"></div>
+      <!-- duplicate for infinite scroll -->
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo-universidad-uruguay.png" alt="Universidad del Uruguay"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo-hym.png" alt="H&M"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/ministerio-trasporte-logo.gif" alt="Ministerio de Transporte"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/abb-logo.gif" alt="ABB"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/ute-logo.gif" alt="UTE"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/decathlon-logo.gif" alt="Decathlon"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/disa-logo.gif" alt="DISA"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/starbucks.gif" alt="Starbucks"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/metlife-logo.gif" alt="MetLife"></div>
+      <div class="clogo"><img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/rootstrap.gif" alt="Rootstrap"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  SOBRE NOSOTROS                      ║
+     ╚══════════════════════════════════════╝ -->
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap rev-l">
+        <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/trabajador.webp" alt="Trabajador TREPPCO">
+      </div>
+      <div class="about-text rev-r">
+        <span class="kicker">Sobre nosotros</span>
+        <h2>¿Qué es TREPPCO?</h2>
+        <p>
+          <strong>TREPPCO</strong> es una empresa uruguaya especializada en soluciones de gestión y mantenimiento de instalaciones. Ofrecemos servicios personalizados que aseguran eficiencia operativa y sostenibilidad, con más de 14 años de experiencia, un enfoque innovador, y un compromiso constante con la calidad y las necesidades de nuestros clientes.
+        </p>
+        <div class="badges">
+          <span class="badge r">ISO 9001:2015</span>
+          <span class="badge r">ISO 45001:2018</span>
+          <span class="badge">+14 años</span>
+          <span class="badge">Uruguay &amp; Chile</span>
+        </div>
+        <div class="ab-actions">
+          <a href="#contacto" class="btn btn-red">Sobre nosotros</a>
+          <a href="#clientes"  class="btn btn-ghost-r">Nuestros clientes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  STATS                               ║
+     ╚══════════════════════════════════════╝ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="sblock rev d1">
+        <div class="sblock-n"><em>+</em><span class="c2" data-n="350">0</span></div>
+        <div class="sblock-l">Proyectos ejecutados</div>
+      </div>
+      <div class="sblock rev d2">
+        <div class="sblock-n"><em>+</em><span class="c2" data-n="40000" data-s=".">0</span></div>
+        <div class="sblock-l">Trabajos anuales</div>
+      </div>
+      <div class="sblock rev d3">
+        <div class="sblock-n"><em>+</em><span class="c2" data-n="14">0</span></div>
+        <div class="sblock-l">Años de experiencia</div>
+      </div>
+      <div class="sblock rev d4">
+        <div class="sblock-n"><em>+</em><span class="c2" data-n="53">0</span></div>
+        <div class="sblock-l">Clientes internacionales</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  SERVICIOS                           ║
+     ╚══════════════════════════════════════╝ -->
+<section class="section-alt" id="servicios">
+  <div class="container">
+    <div class="sec-head rev">
+      <span class="kicker">Nuestros servicios</span>
+      <h2>Servicios integrales de mantenimiento y gestión</h2>
+      <p>Soluciones completas para garantizar el óptimo funcionamiento de tus instalaciones empresariales.</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv-card rev-s d1">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Mantenimiento-Integral.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Mantenimiento Integral</div>
+          <div class="srv-desc">Optimizamos instalaciones abarcando electricidad, sistemas sanitarios, aire acondicionado y albañilería.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d2">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Servicios-Industriales.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Servicios Industriales</div>
+          <div class="srv-desc">Garantizamos la operatividad de plantas productivas y polos logísticos con soluciones técnicas especializadas.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d3">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Climatizacion.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Climatización</div>
+          <div class="srv-desc">Sistemas de climatización eficientes priorizando el ahorro energético, la sostenibilidad y el confort.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d4">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Facility-Managament.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Facility Management</div>
+          <div class="srv-desc">Optimizamos la gestión de instalaciones mejorando la eficiencia operativa, el uso de recursos y la sostenibilidad.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d5">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Espacios-Verdes.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Espacios Verdes</div>
+          <div class="srv-desc">Áreas verdes con prácticas sostenibles, manteniendo entornos saludables, estéticos y funcionales.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d6">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/funcionarios-de-una-empresa-de-conserjeria.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Conserjería</div>
+          <div class="srv-desc">Limpieza, gestión de correspondencia y mantenimiento general garantizando espacios organizados y operativos.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d7">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Ingenieria.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Ingeniería</div>
+          <div class="srv-desc">Soluciones de ingeniería personalizadas para mejorar procesos y optimizar el rendimiento de infraestructuras.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <div class="srv-card rev-s d8">
+        <div class="srv-img" style="background-image:url('file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/Obras.jpg')"></div>
+        <div class="srv-ov"></div><div class="srv-top"></div>
+        <div class="srv-body">
+          <div class="srv-title">Obras</div>
+          <div class="srv-desc">Obras civiles y eléctricas adaptadas a tus necesidades, garantizando funcionalidad, sostenibilidad y eficiencia.</div>
+          <span class="srv-more">Ver más <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  CTA BAND                            ║
+     ╚══════════════════════════════════════╝ -->
+<div class="cta-band">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text rev-l">
+        <h2>Dé el primer paso para una experiencia innovadora</h2>
+        <p>Contáctese con nuestro equipo de ventas para saber cómo nuestros servicios podrían ayudarle.</p>
+      </div>
+      <div class="rev-r">
+        <a href="#contacto" class="btn btn-red" style="font-size:15px;padding:15px 32px;">
+          Solicite presupuesto
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  POR QUÉ TREPPCO                     ║
+     ╚══════════════════════════════════════╝ -->
+<section class="section" id="porque">
+  <div class="container">
+    <div class="why-grid">
+      <div class="rev-l">
+        <span class="kicker">Por qué elegirnos</span>
+        <h2 style="margin-bottom:32px;">Beneficios de elegir TREPPCO para servicios integrales de mantenimiento</h2>
+        <div class="acc" id="acc">
+
+          <div class="ai open">
+            <div class="ai-head" onclick="ta(this)">
+              <div class="ai-title"><span class="ai-n">01</span>Experiencia comprobada</div>
+              <svg class="ai-chev" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="ai-body"><div class="ai-content">Nuestra trayectoria de 14 años demuestra nuestro compromiso con la calidad y la excelencia en la gestión de instalaciones.</div></div>
+          </div>
+
+          <div class="ai">
+            <div class="ai-head" onclick="ta(this)">
+              <div class="ai-title"><span class="ai-n">02</span>Soluciones personalizadas</div>
+              <svg class="ai-chev" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="ai-body"><div class="ai-content">Nos adaptamos a tus requerimientos, brindando servicios confiables y ajustados a las particularidades de tu empresa.</div></div>
+          </div>
+
+          <div class="ai">
+            <div class="ai-head" onclick="ta(this)">
+              <div class="ai-title"><span class="ai-n">03</span>Enfoque en sostenibilidad</div>
+              <svg class="ai-chev" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="ai-body"><div class="ai-content">Integramos estrategias sostenibles en nuestros servicios, ayudando a empresas a cumplir sus objetivos de responsabilidad ambiental.</div></div>
+          </div>
+
+          <div class="ai">
+            <div class="ai-head" onclick="ta(this)">
+              <div class="ai-title"><span class="ai-n">04</span>Clientes destacados</div>
+              <svg class="ai-chev" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="ai-body"><div class="ai-content">Grandes empresas avalan la calidad de nuestro trabajo, confiando en nosotros para sus proyectos más importantes.</div></div>
+          </div>
+
+          <div class="ai">
+            <div class="ai-head" onclick="ta(this)">
+              <div class="ai-title"><span class="ai-n">05</span>Certificaciones internacionales</div>
+              <svg class="ai-chev" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="ai-body"><div class="ai-content">ISO 9001:2015 (Calidad) e ISO 45001:2018 (Seguridad y Salud), certificadas por LSQA.</div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="why-img-wrap rev-r">
+        <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/01/servicios-Integrales-de-mantenimiento.jpg" alt="Servicios integrales de mantenimiento">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  SECTORES                            ║
+     ╚══════════════════════════════════════╝ -->
+<section class="section-alt" id="sectores">
+  <div class="container">
+    <div class="sec-head rev" style="margin-bottom:52px;">
+      <span class="kicker">Industrias</span>
+      <h2>Sectores de la industria que confiaron en nosotros</h2>
+      <p>Presencia en más de 12 sectores con soluciones a medida para cada necesidad.</p>
+    </div>
+    <div class="sectors-layout">
+      <div class="sec-industries">
+        <div class="sind rev d1"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Data Centers</div>
+        <div class="sind rev d2"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/></svg>Polos Logísticos</div>
+        <div class="sind rev d3"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>Centros Educativos</div>
+        <div class="sind rev d4"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>Centros Comerciales</div>
+        <div class="sind rev d5"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Inst. Financieras</div>
+        <div class="sind rev d6"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>Call Centers</div>
+        <div class="sind rev d7"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Oficinas Corporativas</div>
+        <div class="sind rev d8"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Edif. de Viviendas</div>
+        <div class="sind rev d9"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>Retailers</div>
+        <div class="sind rev d10"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Plantas Industriales</div>
+        <div class="sind rev d11"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Servicios Portuarios</div>
+        <div class="sind rev d12"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Centros de Salud</div>
+      </div>
+      <div class="sec-feat rev-r">
+        <div class="sfeat">
+          <h4>Logística</h4>
+          <p>Atendemos centros logísticos con soluciones personalizadas, asegurando la funcionalidad de almacenes y plataformas de distribución.</p>
+        </div>
+        <div class="sfeat">
+          <h4>Oficinas Corporativas</h4>
+          <p>Cuidamos cada detalle de las oficinas corporativas para ofrecer espacios funcionales y seguros para tus equipos.</p>
+        </div>
+        <div class="sfeat">
+          <h4>Retail</h4>
+          <p>Aseguramos el funcionamiento óptimo de tiendas, locales comerciales y centros de distribución en el sector retail.</p>
+        </div>
+        <div class="sfeat">
+          <h4>Manufactura</h4>
+          <p>Soluciones efectivas para el cuidado de infraestructuras y equipos en entornos de manufactura.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  CONTACTO                            ║
+     ╚══════════════════════════════════════╝ -->
+<section class="section" id="contacto">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="cf rev-l">
+        <span class="kicker">Contacto</span>
+        <h2>Reciba asesoramiento sobre nuestros servicios</h2>
+        <p>Complete el formulario y nuestro equipo se pondrá en contacto en menos de 24 horas.</p>
+        <form onsubmit="sf(event)">
+          <div class="frow">
+            <div class="fg"><label>Nombre *</label><input type="text" placeholder="Su nombre completo" required></div>
+            <div class="fg"><label>Empresa *</label><input type="text" placeholder="Nombre de su empresa" required></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>Correo electrónico *</label><input type="email" placeholder="email@empresa.com" required></div>
+            <div class="fg"><label>Teléfono</label><input type="tel" placeholder="+598 ..."></div>
+          </div>
+          <div class="fg">
+            <label>Servicio de interés</label>
+            <select>
+              <option value="" disabled selected>Seleccione un servicio</option>
+              <option>Mantenimiento Integral</option>
+              <option>Servicios Industriales</option>
+              <option>Climatización</option>
+              <option>Facility Management</option>
+              <option>Espacios Verdes</option>
+              <option>Conserjería</option>
+              <option>Ingeniería</option>
+              <option>Obras</option>
+              <option>Múltiples servicios</option>
+            </select>
+          </div>
+          <div class="fg"><label>Mensaje</label><textarea placeholder="Cuéntenos sobre su proyecto..."></textarea></div>
+          <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;padding:15px;font-size:15px;" id="fbtn">
+            Enviar solicitud
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <div class="form-ok" id="fok">¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.</div>
+        </form>
+      </div>
+
+      <div class="ci rev-r">
+        <span class="kicker">Información</span>
+        <h3>Contáctenos directamente</h3>
+        <p>Presente en Uruguay y Chile, brindamos servicios de mantenimiento a nivel regional con equipos altamente capacitados.</p>
+        <div class="ci-items">
+          <div class="ci-item">
+            <div class="ci-ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="ci-text">
+              <label>Dirección</label>
+              <span data-uy="Bartolomé Mitre 1441, Piso 2<br>Ciudad Vieja, Montevideo, Uruguay" data-cl="Av. Apoquindo 4700, Piso 8<br>Las Condes, Santiago, Chile">Bartolomé Mitre 1441, Piso 2<br>Ciudad Vieja, Montevideo, Uruguay</span>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.35a2 2 0 0 1 2-.22l3 1.5A2 2 0 0 1 8 6.27l-.65 3.26a14 14 0 0 0 6.14 6.14l3.26-.65a2 2 0 0 1 2.52 1.07l1.5 3z"/></svg>
+            </div>
+            <div class="ci-text">
+              <label>Teléfono</label>
+              <a href="tel:+59829166031" data-uy="+598 2916 6031" data-uy-href="tel:+59829166031" data-cl="+56 2 2938 0000" data-cl-href="tel:+56229380000">+598 2916 6031</a>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.785 23.454l4.42-1.499A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.057 0-3.98-.592-5.6-1.614l-.399-.237-4.153 1.408 1.409-4.149-.259-.413A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            </div>
+            <div class="ci-text">
+              <label>WhatsApp</label>
+              <a href="https://wa.me/59898011341" target="_blank" data-uy="+598 98 011 341" data-uy-href="https://wa.me/59898011341" data-cl="+56 9 9801 1341" data-cl-href="https://wa.me/56998011341">+598 98 011 341</a>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="ci-text">
+              <label>LinkedIn</label>
+              <a href="https://www.linkedin.com/company/treppco" target="_blank">linkedin.com/company/treppco</a>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:10px;">Presencia en</p>
+        <div class="pres" style="margin-bottom:24px;">
+          <div class="ptag"><span style="font-size:18px;">🇺🇾</span> Uruguay</div>
+          <div class="ptag"><span style="font-size:18px;">🇨🇱</span> Chile</div>
+        </div>
+
+        <p style="font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:12px;">Certificaciones</p>
+        <div class="cert-imgs">
+          <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/05/509e1c28-945f-4261-a10e-c0a4125353cd.webp" alt="ISO 9001">
+          <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2025/05/aedc5512-3417-4b8e-ae9c-02baae5d401f.webp" alt="ISO 45001">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  FOOTER                              ║
+     ╚══════════════════════════════════════╝ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fb">
+        <div class="fb-logo">
+          <img src="file:///C:/Users/nacho/Desktop/treppco-mirror/wp-content/uploads/2024/11/logo.png" alt="TREPPCO">
+        </div>
+        <p>Empresa uruguaya especializada en gestión y mantenimiento de instalaciones. Más de 14 años brindando excelencia operativa en Uruguay y Chile.</p>
+        <div class="f-soc">
+          <a href="https://www.linkedin.com/company/treppco" target="_blank" class="fsoc-a" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://wa.me/59898011341" target="_blank" class="fsoc-a" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.785 23.454l4.42-1.499A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.057 0-3.98-.592-5.6-1.614l-.399-.237-4.153 1.408 1.409-4.149-.259-.413A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Servicios</h4>
+        <div class="flinks">
+          <a href="#servicios">Mantenimiento Integral</a>
+          <a href="#servicios">Servicios Industriales</a>
+          <a href="#servicios">Climatización</a>
+          <a href="#servicios">Facility Management</a>
+          <a href="#servicios">Espacios Verdes</a>
+          <a href="#servicios">Conserjería</a>
+          <a href="#servicios">Ingeniería</a>
+          <a href="#servicios">Obras</a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Sectores</h4>
+        <div class="flinks">
+          <a href="#sectores">Data Centers</a>
+          <a href="#sectores">Polos Logísticos</a>
+          <a href="#sectores">Centros Comerciales</a>
+          <a href="#sectores">Oficinas Corporativas</a>
+          <a href="#sectores">Plantas Industriales</a>
+          <a href="#sectores">Centros de Salud</a>
+        </div>
+        <h4 style="margin-top:24px;">Empresa</h4>
+        <div class="flinks">
+          <a href="#nosotros">Sobre nosotros</a>
+          <a href="#">Actualidad</a>
+          <a href="#">¿Buscas empleo?</a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Contacto</h4>
+        <div class="flinks" style="gap:12px;">
+          <span style="color:rgba(255,255,255,.38);font-size:13.5px;line-height:1.7;" data-uy="Bartolomé Mitre 1441, Piso 2<br>Ciudad Vieja, Montevideo" data-cl="Av. Apoquindo 4700, Piso 8<br>Las Condes, Santiago">Bartolomé Mitre 1441, Piso 2<br>Ciudad Vieja, Montevideo</span>
+          <a href="tel:+59829166031" data-uy="+598 2916 6031" data-uy-href="tel:+59829166031" data-cl="+56 2 2938 0000" data-cl-href="tel:+56229380000">+598 2916 6031</a>
+          <a href="https://wa.me/59898011341" data-uy="+598 98 011 341" data-uy-href="https://wa.me/59898011341" data-cl="+56 9 9801 1341" data-cl-href="https://wa.me/56998011341">+598 98 011 341</a>
+        </div>
+        <div style="margin-top:18px;font-size:20px;display:flex;gap:8px;">🇺🇾 🇨🇱</div>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>Copyright &copy; Treppco, 2025. Todos los derechos reservados. Desarrollado por: <a href="https://gopointagency.com/" target="_blank">Gopoint Agency</a>.</p>
+      <p>Uruguay &amp; Chile</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════╗
+     ║  JS                                  ║
+     ╚══════════════════════════════════════╝ -->
+<script>
+  /* ─── Scroll progress bar ─── */
+  const pb = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const s = document.documentElement, max = s.scrollHeight - s.clientHeight;
+    pb.style.width = (scrollY / max * 100) + '%';
+  }, {passive:true});
+
+  /* ─── Navbar shadow ─── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('up', scrollY > 30), {passive:true});
+
+  /* ─── Mobile burger ─── */
+  const burger = document.getElementById('burger');
+  const mob    = document.getElementById('mobMenu');
+  burger.addEventListener('click', () => {
+    mob.classList.toggle('on');
+    const [a,b,c] = burger.querySelectorAll('span');
+    if (mob.classList.contains('on')) {
+      a.style.transform = 'rotate(45deg) translate(5px,5px)';
+      b.style.opacity   = '0';
+      c.style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else { [a,b,c].forEach(s => { s.style.transform=''; s.style.opacity=''; }); }
+  });
+  function cm() {
+    mob.classList.remove('on');
+    burger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity=''; });
+  }
+
+  /* ─── Mobile sub-menu accordion ─── */
+  function mt(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.mob-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ─── Reveal on scroll ─── */
+  const ro = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+  }, {threshold:.08, rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.rev,.rev-l,.rev-r,.rev-s').forEach(el => ro.observe(el));
+
+  /* ─── Counter animation ─── */
+  function counter(el) {
+    const target = +el.dataset.n, sep = el.dataset.s||'', dur = 1800, t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now-t0)/dur,1), v = Math.round(target*(1-Math.pow(1-p,3)));
+      el.textContent = sep && v>=1000 ? v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep) : v;
+      if (p<1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const co = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting && !e.target.dataset.done) { e.target.dataset.done=1; counter(e.target); co.unobserve(e.target); } });
+  }, {threshold:.4});
+  document.querySelectorAll('.c,.c2').forEach(el => co.observe(el));
+
+  /* ─── Accordion ─── */
+  function ta(head) {
+    const item = head.closest('.ai'), wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.ai').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  /* ─── Hero parallax ─── */
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    heroBg.style.transform = 'translateY(' + (scrollY * 0.22) + 'px)';
+  }, {passive:true});
+
+  /* ─── Hero floating dots ─── */
+  (function() {
+    const container = document.getElementById('heroDots');
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElement('span');
+      const x = Math.random() * 100, y = 80 + Math.random() * 20;
+      const dur = 6 + Math.random() * 8, delay = Math.random() * 10;
+      const size = 2 + Math.random() * 3;
+      s.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s`;
+      container.appendChild(s);
+    }
+  })();
+
+  /* ─── Form submit ─── */
+  function sf(e) {
+    e.preventDefault();
+    const btn = document.getElementById('fbtn');
+    btn.textContent = 'Enviando...'; btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('fok').style.display = 'block';
+      e.target.reset();
+      btn.textContent = 'Solicitud enviada ✓';
+      setTimeout(() => {
+        btn.innerHTML = 'Enviar solicitud <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        btn.disabled = false;
+        document.getElementById('fok').style.display = 'none';
+      }, 5000);
+    }, 1400);
+  }
+
+  /* ─── Country switcher ─── */
+  const csw = document.getElementById('countrySw');
+  function toggleCSW() { csw.classList.toggle('open'); }
+  document.addEventListener('click', e => { if (!csw.contains(e.target)) csw.classList.remove('open'); });
+
+  function switchCountry(c) {
+    csw.classList.remove('open');
+    document.getElementById('cswFlag').textContent  = c === 'uy' ? '🇺🇾' : '🇨🇱';
+    document.getElementById('cswLabel').textContent = c === 'uy' ? 'UY' : 'CL';
+    document.getElementById('optUY').classList.toggle('active', c === 'uy');
+    document.getElementById('optCL').classList.toggle('active', c === 'cl');
+
+    /* update all elements with data-uy / data-cl */
+    document.querySelectorAll('[data-uy][data-cl]').forEach(el => {
+      const val = el.dataset[c];
+      if (el.tagName === 'A') {
+        el.innerHTML = val;
+        const href = el.dataset[c + 'Href'];
+        if (href) el.href = href;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+
+    /* swap presence flags active state */
+    document.querySelectorAll('.ptag').forEach(pt => {
+      const isActive = (c === 'uy' && pt.textContent.includes('Uruguay')) ||
+                       (c === 'cl' && pt.textContent.includes('Chile'));
+      pt.style.background    = isActive ? 'var(--red-bg)' : 'var(--bg)';
+      pt.style.borderColor   = isActive ? 'rgba(231,40,70,.3)' : 'var(--border)';
+      pt.style.fontWeight    = isActive ? '700' : '600';
+    });
+  }
+
+  /* ─── Smooth scroll ─── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); window.scrollTo({top: t.getBoundingClientRect().top+scrollY-80, behavior:'smooth'}); }
+    });
+  });
+</script>
+</body>
+</html>
