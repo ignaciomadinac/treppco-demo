@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\nacho\\\\OneDrive\\\\Escritorio\\\\TREPPCO NEW\" -Force)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(gh repo *)"
+    ]
+  }
+}
